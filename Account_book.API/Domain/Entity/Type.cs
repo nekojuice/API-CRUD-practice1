@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace API_CRUD_practice1.Domain.Entity;
+namespace Account_book.API.Domain.Entity;
 
 public partial class Type
 {

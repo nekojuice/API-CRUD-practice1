@@ -1,7 +1,7 @@
 ﻿using Account_book.API.Domain.Request.Get;
 using Account_book.API.Infrastructures.Database;
 using Account_book.API.Repositories.Interfaces;
-using API_CRUD_practice1.Domain.Entity;
+using Account_book.API.Domain.Entity;
 using Dapper;
 
 namespace Account_book.API.Repositories.Implements

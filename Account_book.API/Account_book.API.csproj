@@ -26,7 +26,6 @@
     <Folder Include="Common\Extensions\" />
     <Folder Include="Domain\AutoMapperProfile\" />
     <Folder Include="Domain\Request\Put\" />
-    <Folder Include="Domain\Request\Post\" />
     <Folder Include="Domain\Response\" />
     <Folder Include="Infrastructures\Cors\" />
     <Folder Include="Infrastructures\ExceptionHandler\" />

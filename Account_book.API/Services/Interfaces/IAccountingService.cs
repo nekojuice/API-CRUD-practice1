@@ -1,5 +1,5 @@
 ﻿using Account_book.API.Domain.Request.Get;
-using API_CRUD_practice1.Domain.Entity;
+using Account_book.API.Domain.Entity;
 
 namespace Account_book.API.Services.Interfaces
 {

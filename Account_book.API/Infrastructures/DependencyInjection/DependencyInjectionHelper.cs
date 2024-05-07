@@ -10,12 +10,16 @@ namespace Account_book.API.Infrastructures.DependencyInjection
     {
         public static void CustomDIConfigurator(this IServiceCollection services)
         {
-            //Service
-            services.AddScoped<IAccountingService, AccountingService>();
-            //Repository
-            services.AddScoped<IAccountingRepository, AccountingRepository>();
             //DBConnection
             services.AddScoped<DatabaseConnectionHelper>();
+
+
+            //Service
+            services.AddScoped<IAccountingService, AccountingService>();
+            services.AddScoped<IMemberService, MemberService>();
+            //Repository
+            services.AddScoped<IAccountingRepository, AccountingRepository>();
+            services.AddScoped<IMemberRepository, MemberRepository>();
         }
     }
 }

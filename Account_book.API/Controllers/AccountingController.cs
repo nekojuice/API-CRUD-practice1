@@ -1,6 +1,6 @@
 ﻿using Account_book.API.Domain.Request.Get;
 using Account_book.API.Services.Interfaces;
-using API_CRUD_practice1.Domain.Entity;
+using Account_book.API.Domain.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
