@@ -1,6 +1,7 @@
+using Account_book.API;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API_CRUD_practice1.Controllers
+namespace Account_book.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,4 +1,4 @@
-namespace API_CRUD_practice1
+namespace Account_book.API
 {
     public class WeatherForecast
     {
