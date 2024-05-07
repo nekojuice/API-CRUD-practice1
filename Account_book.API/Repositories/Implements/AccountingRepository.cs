@@ -20,11 +20,7 @@ namespace Account_book.API.Repositories.Implements
             string sql = @"SELECT [accountingId],a.[memberId],[typeId],[message],[money],[recordTime],[timestamp] 
                         FROM Accounting AS a
                         JOIN Member AS m ON a.memberId = m.memberId
-                        WHERE 1 = 1 ";
-            if (entity != null)
-            {
-                if (entity.email != null) { sql += "AND email = @email "; }
-            }
+                        WHERE a.memberId = @memberId";
 
             using (var conn = _connectionHelper.NkjMoneyConn())
             {

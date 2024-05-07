@@ -2,6 +2,6 @@
 {
     public class QueryAccountingRequest
     {
-        public string? email { get; set; }
+        public Guid memberId { get; set; }
     }
 }

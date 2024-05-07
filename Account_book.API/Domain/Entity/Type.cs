@@ -7,7 +7,13 @@ namespace API_CRUD_practice1.Domain.Entity;
 
 public partial class Type
 {
-    public int typeId { get; set; }
+    /// <summary>
+    /// PK
+    /// </summary>
+    public Guid typeId { get; set; }
 
+    /// <summary>
+    /// 類別標籤名稱
+    /// </summary>
     public string typeName { get; set; }
 }

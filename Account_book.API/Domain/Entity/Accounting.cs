@@ -7,17 +7,38 @@ namespace API_CRUD_practice1.Domain.Entity;
 
 public partial class Accounting
 {
-    public int accountingId { get; set; }
+    /// <summary>
+    /// PK
+    /// </summary>
+    public Guid accountingId { get; set; }
 
-    public int memberId { get; set; }
+    /// <summary>
+    /// FK 會員ID
+    /// </summary>
+    public Guid memberId { get; set; }
 
-    public int typeId { get; set; }
+    /// <summary>
+    /// FK 類別標籤ID
+    /// </summary>
+    public Guid typeId { get; set; }
 
+    /// <summary>
+    /// 該筆記帳備註訊息
+    /// </summary>
     public string message { get; set; }
 
+    /// <summary>
+    /// 該筆記帳的消費金額
+    /// </summary>
     public decimal money { get; set; }
 
+    /// <summary>
+    /// 該筆記帳的消費時間
+    /// </summary>
     public DateTime recordTime { get; set; }
 
-    public DateTime timestamp { get; set; }
+    /// <summary>
+    /// 資料生成時的時間戳記
+    /// </summary>
+    public DateTime? timestamp { get; set; }
 }
