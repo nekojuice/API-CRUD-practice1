@@ -19,31 +19,31 @@ namespace Account_book.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Member>> GetAsync([FromQuery] QueryMemberRequest condition)
+        public async Task<IResult> GetAsync([FromQuery] Guid? request)
         {
-            var result = await _memberService.GetAsync(condition);
-            return result;
+            var result = await _memberService.GetAsync(request);
+            return Results.Ok(result);
         }
 
         [HttpPost]
-        public async Task<bool> InsetrAsync([FromBody] InsertMemberRequest entity)
+        public async Task<IResult> InsetrAsync([FromBody] InsertMemberRequest request)
         {
-            var result = await _memberService.InsertAsync(entity);
-            return result;
+            var result = await _memberService.InsertAsync(request);
+            return Results.Ok(result);
         }
 
         [HttpPut]
-        public async Task<bool> UpdateAsync([FromBody] Member entity)
+        public async Task<IResult> UpdateAsync([FromBody] Member request)
         {
-            var result = await _memberService.UpdateAsync(entity);
-            return result;
+            var result = await _memberService.UpdateAsync(request);
+            return Results.Ok(result);
         }
 
         [HttpDelete]
-        public async Task<bool> DeleteAsync([FromBody] Guid memberId)
+        public async Task<IResult> DeleteAsync([FromBody] Guid request)
         {
-            var result = await _memberService.DeleteAsync(memberId);
-            return result;
+            var result = await _memberService.DeleteAsync(request);
+            return Results.Ok(result);
         }
     }
 }

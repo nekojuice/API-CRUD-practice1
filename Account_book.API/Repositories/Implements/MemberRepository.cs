@@ -17,30 +17,23 @@ namespace Account_book.API.Repositories.Implements
         }
 
 
-        public async Task<IEnumerable<Member>> GetAsync(QueryMemberRequest condition)
+        public async Task<IEnumerable<Member>> GetAsync(Guid? memberId)
         {
             string sql = @"SELECT * FROM Member as m
                             WHERE 1 = 1";
-            if (condition != null)
-            {
-                if (!string.IsNullOrEmpty(condition.email))
-                {
-                    sql += @" AND m.email = @email";
-                }
-                if (condition.memberId != null)
-                {
-                    sql += @" OR m.memberId = @memberId";
-                }
-            }
 
+            if (memberId != null)
+            {
+                sql += @" AND m.memberId = @memberId";
+            }
             using (var conn = _connectionHelper.NkjMoneyConn())
             {
-                var reslut = await conn.QueryAsync<Member>(sql, condition);
+                var reslut = await conn.QueryAsync<Member>(sql, new { memberId = memberId });
                 return reslut;
             }
         }
 
-        public async Task<bool> InsertAsync(InsertMemberRequest entity)
+        public async Task<bool> InsertAsync(Member entity)
         {
             string sql = @"INSERT Member(name, email, password)
                             VALUES(@name, @email, @password)";
@@ -76,5 +69,7 @@ namespace Account_book.API.Repositories.Implements
                 return (count == 1 ? true : false);
             }
         }
+
+
     }
 }

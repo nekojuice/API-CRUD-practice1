@@ -6,8 +6,8 @@ namespace Account_book.API.Repositories.Interfaces
 {
     public interface IMemberRepository
     {
-        public Task<IEnumerable<Member>> GetAsync(QueryMemberRequest condition);
-        public Task<bool> InsertAsync(InsertMemberRequest entity);
+        public Task<IEnumerable<Member>> GetAsync(Guid? memberId);
+        public Task<bool> InsertAsync(Member entity);
         public Task<bool> UpdateAsync(Member entity);
         public Task<bool> DeleteAsync(Guid memberId);
     }
