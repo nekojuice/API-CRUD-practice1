@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Account_book.API.Domain.Entity;
 
-public partial class Type
+public partial class LabelType
 {
     /// <summary>
     /// PK

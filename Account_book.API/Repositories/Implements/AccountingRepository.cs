@@ -5,6 +5,7 @@ using Account_book.API.Domain.Entity;
 using Dapper;
 using AutoMapper.Execution;
 using static Dapper.SqlMapper;
+using Account_book.API.Domain.Response;
 
 namespace Account_book.API.Repositories.Implements;
 
@@ -18,41 +19,55 @@ public class AccountingRepository : IAccountingRepository
     }
 
 
-    public async Task<IEnumerable<Accounting>> GetAsync(Accounting? entity)
+    public async Task<IEnumerable<GetAccountingResponse>> GetAsync(Accounting? entity)
     {
         string sql = @"
-                    SELECT * FROM [NkjMoney].[dbo].[Accounting]
-                     WHERE 1 = 1";
+                SELECT [AccountingId]
+                      ,[MemberId]
+                      ,a.[TypeId]
+                      ,[Message]
+                      ,[Money]
+                      ,[RecordTime]
+                      ,[Timestamp]
+                      ,t.[TypeName]
+                  FROM [NkjMoney].[dbo].[Accounting] as a
+                  JOIN [NkjMoney].[dbo].[LabelType] as t
+                    ON a.[TypeId] = t.[TypeId]
+                 WHERE 1 = 1";
         if (entity != null)
         {
             if (entity.AccountingId != Guid.Empty) { sql += @" AND [AccountingId] = @AccountingId"; }
             if (entity.MemberId != Guid.Empty) { sql += @" AND [MemberId] = @MemberId"; }
-            if (entity.TypeId != Guid.Empty) { sql += @" AND [TypeId] = @TypeId"; }
+            if (entity.TypeId != Guid.Empty) { sql += @" AND a.[TypeId] = @TypeId"; }
         }
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
-            var data = await conn.QueryAsync<Accounting>(sql, entity);
+            var data = await conn.QueryAsync<GetAccountingResponse>(sql, entity);
             return data;
         }
     }
 
-    public async Task<IEnumerable<Accounting>> GetByMemberIdAsync(Guid memberId)
+    // 含 TypeName
+    public async Task<IEnumerable<GetAccountingResponse>> GetByMemberIdAsync(Guid memberId)
     {
         string sql = @"
                       SELECT [AccountingId]
                               ,a.[MemberId]
-                              ,[TypeId]
+                              ,t.[TypeId]
                               ,[Message]
                               ,[Money]
                               ,[RecordTime]
                               ,[Timestamp]
+                              ,t.[TypeName]
                         FROM [NkjMoney].[dbo].[Accounting] AS a
                         JOIN [NkjMoney].[dbo].[Member] AS m 
                           ON a.[MemberId] = m.[MemberId]
+                        JOIN [NkjMoney].[dbo].[LabelType] AS t 
+                          ON a.[TypeId] = t.[TypeId]
                        WHERE a.[MemberId] = @memberId";
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
-            var data = await conn.QueryAsync<Accounting>(sql, new { memberId = memberId });
+            var data = await conn.QueryAsync<GetAccountingResponse>(sql, new { memberId = memberId });
             return data;
         }
     }
