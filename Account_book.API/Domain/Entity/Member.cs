@@ -10,20 +10,20 @@ public partial class Member
     /// <summary>
     /// PK 會員編號
     /// </summary>
-    public Guid memberId { get; set; }
+    public Guid MemberId { get; set; }
 
     /// <summary>
     /// 會員名稱
     /// </summary>
-    public string name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// 會員帳號 為電子信箱
     /// </summary>
-    public string email { get; set; }
+    public string Email { get; set; }
 
     /// <summary>
     /// 登入用密碼
     /// </summary>
-    public string password { get; set; }
+    public string Password { get; set; }
 }

@@ -2,5 +2,5 @@
 
 public class QueryAccountingRequest
 {
-    public Guid memberId { get; set; }
+    public Guid MemberId { get; set; }
 }

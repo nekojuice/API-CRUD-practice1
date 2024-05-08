@@ -10,10 +10,10 @@ public partial class Type
     /// <summary>
     /// PK
     /// </summary>
-    public Guid typeId { get; set; }
+    public Guid TypeId { get; set; }
 
     /// <summary>
     /// 類別標籤名稱
     /// </summary>
-    public string typeName { get; set; }
+    public string TypeName { get; set; }
 }

@@ -24,9 +24,9 @@ public class MemberRepository : IMemberRepository
 
         if (entity != null)
         {
-            if (entity.memberId != Guid.Empty) { sql += @" AND m.memberId = @memberId"; }
-            if (!string.IsNullOrEmpty(entity.name)) { sql += @" AND m.name = @name"; }
-            if (!string.IsNullOrEmpty(entity.email)) { sql += @" AND m.email = @email"; }
+            if (entity.MemberId != Guid.Empty) { sql += @" AND m.memberId = @memberId"; }
+            if (!string.IsNullOrEmpty(entity.Name)) { sql += @" AND m.name = @name"; }
+            if (!string.IsNullOrEmpty(entity.Email)) { sql += @" AND m.email = @email"; }
         }
         using (var conn = _connectionHelper.NkjMoneyConn())
         {

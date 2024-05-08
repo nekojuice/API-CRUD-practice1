@@ -10,35 +10,35 @@ public partial class Accounting
     /// <summary>
     /// PK
     /// </summary>
-    public Guid accountingId { get; set; }
+    public Guid AccountingId { get; set; }
 
     /// <summary>
     /// FK 會員ID
     /// </summary>
-    public Guid memberId { get; set; }
+    public Guid MemberId { get; set; }
 
     /// <summary>
     /// FK 類別標籤ID
     /// </summary>
-    public Guid typeId { get; set; }
+    public Guid TypeId { get; set; }
 
     /// <summary>
     /// 該筆記帳備註訊息
     /// </summary>
-    public string message { get; set; }
+    public string Message { get; set; }
 
     /// <summary>
     /// 該筆記帳的消費金額
     /// </summary>
-    public decimal money { get; set; }
+    public decimal Money { get; set; }
 
     /// <summary>
     /// 該筆記帳的消費時間
     /// </summary>
-    public DateTime recordTime { get; set; }
+    public DateTime RecordTime { get; set; }
 
     /// <summary>
     /// 資料生成時的時間戳記
     /// </summary>
-    public DateTime? timestamp { get; set; }
+    public DateTime? Timestamp { get; set; }
 }
