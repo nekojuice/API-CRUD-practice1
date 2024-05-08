@@ -19,14 +19,14 @@ public class MemberRepository : IMemberRepository
 
     public async Task<IEnumerable<Member>> GetAsync(Member? entity)
     {
-        string sql = @"SELECT * FROM Member as m
-                            WHERE 1 = 1";
-
+        string sql = @"
+                   SELECT * FROM [NkjMoney].[dbo].[Member]
+                    WHERE 1 = 1";
         if (entity != null)
         {
-            if (entity.MemberId != Guid.Empty) { sql += @" AND m.memberId = @memberId"; }
-            if (!string.IsNullOrEmpty(entity.Name)) { sql += @" AND m.name = @name"; }
-            if (!string.IsNullOrEmpty(entity.Email)) { sql += @" AND m.email = @email"; }
+            if (entity.MemberId != Guid.Empty) { sql += @" AND [MemberId] = @MemberId"; }
+            if (!string.IsNullOrEmpty(entity.Name)) { sql += @" AND [Name] = @Name"; }
+            if (!string.IsNullOrEmpty(entity.Email)) { sql += @" AND [Email] = @Email"; }
         }
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
@@ -37,8 +37,9 @@ public class MemberRepository : IMemberRepository
 
     public async Task<IEnumerable<Member>> GetByMemberIdAsync(Guid memberId)
     {
-        string sql = @"SELECT * FROM [dbo].[Member]
-                            WHERE memberId = @memberId";
+        string sql = @"
+                   SELECT * FROM [NkjMoney].[dbo].[Member]
+                    WHERE [MemberId] = @MemberId";
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
             var reslut = await conn.QueryAsync<Member>(sql, new { memberId = memberId });
@@ -48,8 +49,17 @@ public class MemberRepository : IMemberRepository
 
     public async Task<bool> InsertAsync(Member entity)
     {
-        string sql = @"INSERT Member(name, email, password)
-                            VALUES(@name, @email, @password)";
+        string sql = @"
+                     INSERT INTO [NkjMoney].[dbo].[Member]
+                           ([MemberId]
+                           ,[Name]
+                           ,[Email]
+                           ,[Password])
+                     VALUES
+                           (<MemberId, uniqueidentifier,>
+                           ,<Name, nvarchar(20),>
+                           ,<Email, nvarchar(100),>
+                           ,<Password, varchar(32),>)";
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
             int count = await conn.ExecuteAsync(sql, entity);
@@ -59,11 +69,13 @@ public class MemberRepository : IMemberRepository
 
     public async Task<bool> UpdateAsync(Member entity)
     {
-        string sql = @"UPDATE Member 
-                            SET name = @name,
-                                email = @email,
-                                password = @password
-                            WHERE memberId = @memberId";
+        string sql = @"
+                    UPDATE [NkjMoney].[dbo].[Member]
+                       SET [MemberId] = <MemberId, uniqueidentifier,>
+                          ,[Name] = <Name, nvarchar(20),>
+                          ,[Email] = <Email, nvarchar(100),>
+                          ,[Password] = <Password, varchar(32),>
+                     WHERE [MemberId] = @MemberId";
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
             int count = await conn.ExecuteAsync(sql, entity);
@@ -73,9 +85,9 @@ public class MemberRepository : IMemberRepository
 
     public async Task<bool> DeleteAsync(Guid memberId)
     {
-        string sql = @"DELETE FROM Member
-                            WHERE memberId = @memberId
-                            ";
+        string sql = @"
+                     DELETE FROM [NkjMoney].[dbo].[Member]
+                      WHERE [MemberId] = @MemberId";
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
             int count = await conn.ExecuteAsync(sql, new { memberId = memberId });

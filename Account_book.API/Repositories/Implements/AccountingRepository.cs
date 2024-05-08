@@ -17,10 +17,18 @@ public class AccountingRepository : IAccountingRepository
 
     public async Task<IEnumerable<Accounting>> GetByMemberIdAsync(Guid memberId)
     {
-        string sql = @"SELECT [accountingId],a.[memberId],[typeId],[message],[money],[recordTime],[timestamp] 
-                        FROM Accounting AS a
-                        JOIN Member AS m ON a.memberId = m.memberId
-                        WHERE a.memberId = @memberId";
+        string sql = @"
+                      SELECT [AccountingId]
+                              ,a.[MemberId]
+                              ,[TypeId]
+                              ,[Message]
+                              ,[Money]
+                              ,[RecordTime]
+                              ,[Timestamp]
+                        FROM [NkjMoney].[dbo].[Accounting] AS a
+                        JOIN [NkjMoney].[dbo].[Member] AS m 
+                          ON a.[MemberId] = m.[MemberId]
+                       WHERE a.[MemberId] = @memberId";
 
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
