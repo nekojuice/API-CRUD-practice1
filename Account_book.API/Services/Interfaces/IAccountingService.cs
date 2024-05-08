@@ -1,10 +1,9 @@
 ﻿using Account_book.API.Domain.Request.Get;
 using Account_book.API.Domain.Entity;
 
-namespace Account_book.API.Services.Interfaces
+namespace Account_book.API.Services.Interfaces;
+
+public interface IAccountingService
 {
-    public interface IAccountingService
-    {
-        public Task<IEnumerable<Accounting>> GetByMemberIdAsync(Guid memberId);
-    }
+    public Task<IEnumerable<Accounting>> GetByMemberIdAsync(Guid memberId);
 }

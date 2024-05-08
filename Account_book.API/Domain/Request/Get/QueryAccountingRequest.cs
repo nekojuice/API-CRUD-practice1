@@ -1,7 +1,6 @@
-﻿namespace Account_book.API.Domain.Request.Get
+﻿namespace Account_book.API.Domain.Request.Get;
+
+public class QueryAccountingRequest
 {
-    public class QueryAccountingRequest
-    {
-        public Guid memberId { get; set; }
-    }
+    public Guid memberId { get; set; }
 }

@@ -1,19 +1,18 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace Account_book.API.Infrastructures.Database
+namespace Account_book.API.Infrastructures.Database;
+
+public class DatabaseConnectionHelper
 {
-    public class DatabaseConnectionHelper
+    private readonly IConfiguration _configuration;
+
+    public DatabaseConnectionHelper(IConfiguration configuration)
     {
-        private readonly IConfiguration _configuration;
+        _configuration = configuration;
+    }
 
-        public DatabaseConnectionHelper(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
-        public SqlConnection NkjMoneyConn()
-        {
-            return new SqlConnection(_configuration.GetConnectionString("NkjMoney"));
-        }
+    public SqlConnection NkjMoneyConn()
+    {
+        return new SqlConnection(_configuration.GetConnectionString("NkjMoney"));
     }
 }
