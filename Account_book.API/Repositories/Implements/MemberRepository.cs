@@ -17,15 +17,28 @@ namespace Account_book.API.Repositories.Implements
         }
 
 
-        public async Task<IEnumerable<Member>> GetAsync(Guid? memberId)
+        public async Task<IEnumerable<Member>> GetAsync(Member? entity)
         {
             string sql = @"SELECT * FROM Member as m
                             WHERE 1 = 1";
 
-            if (memberId != null)
+            if (entity != null)
             {
-                sql += @" AND m.memberId = @memberId";
+                if (entity.memberId != Guid.Empty) { sql += @" AND m.memberId = @memberId"; }
+                if (!string.IsNullOrEmpty(entity.name)) { sql += @" AND m.name = @name"; }
+                if (!string.IsNullOrEmpty(entity.email)) { sql += @" AND m.email = @email"; }
             }
+            using (var conn = _connectionHelper.NkjMoneyConn())
+            {
+                var reslut = await conn.QueryAsync<Member>(sql, entity);
+                return reslut;
+            }
+        }
+
+        public async Task<IEnumerable<Member>> GetByMemberIdAsync(Guid memberId)
+        {
+            string sql = @"SELECT * FROM [dbo].[Member]
+                            WHERE memberId = @memberId";
             using (var conn = _connectionHelper.NkjMoneyConn())
             {
                 var reslut = await conn.QueryAsync<Member>(sql, new { memberId = memberId });

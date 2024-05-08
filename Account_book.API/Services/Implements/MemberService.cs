@@ -6,6 +6,7 @@ using Account_book.API.Domain.Entity;
 using AutoMapper;
 using System.Collections.Generic;
 using Account_book.API.Domain.Response;
+using static Dapper.SqlMapper;
 
 namespace Account_book.API.Services.Implements
 {
@@ -20,10 +21,17 @@ namespace Account_book.API.Services.Implements
             _mapper = mapper;
         }
 
-        public async Task<ResultResponse> GetAsync(Guid? request)
+        public async Task<ResultResponse> GetAsync(QueryMemberRequest? request)
         {
-            var result = await _memberRepository.GetAsync(request);
-            if (request != null && !result.Any()) { return ResponseExtension.Command.QueryNotFound(request.ToString()); }
+            var entity = _mapper.Map<Member>(request);
+            var result = await _memberRepository.GetAsync(entity);
+            return ResponseExtension.Query.QuerySuccess(result);
+        }
+
+        public async Task<ResultResponse> GetByMemberIdAsync(Guid memberId)
+        {
+            var result = await _memberRepository.GetByMemberIdAsync(memberId);
+            if (!result.Any()) { return ResponseExtension.Command.QueryNotFound(memberId.ToString()); }
             return ResponseExtension.Query.QuerySuccess(result);
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Account_book.API.Domain.Response
 {
-    public static class ResponseExtension
+    public class ResponseExtension
     {
         public static class Query
         {

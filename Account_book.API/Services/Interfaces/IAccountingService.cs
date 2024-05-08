@@ -5,6 +5,6 @@ namespace Account_book.API.Services.Interfaces
 {
     public interface IAccountingService
     {
-        public Task<IEnumerable<Accounting>> GetAsync(QueryAccountingRequest entity);
+        public Task<IEnumerable<Accounting>> GetByMemberIdAsync(Guid memberId);
     }
 }

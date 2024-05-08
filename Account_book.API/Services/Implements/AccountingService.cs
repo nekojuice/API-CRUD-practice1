@@ -13,9 +13,9 @@ namespace Account_book.API.Services.Implements
             _accountingRepository = accountingRepository;
         }
 
-        public async Task<IEnumerable<Accounting>> GetAsync(QueryAccountingRequest entity)
+        public async Task<IEnumerable<Accounting>> GetByMemberIdAsync(Guid memberId)
         {
-            var result = await _accountingRepository.GetAsync(entity);
+            var result = await _accountingRepository.GetByMemberIdAsync(memberId);
             return result;
         }
     }

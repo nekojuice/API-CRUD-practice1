@@ -15,7 +15,7 @@ namespace Account_book.API.Repositories.Implements
             _connectionHelper = databaseConnectionHelper;
         }
 
-        public async Task<IEnumerable<Accounting>> GetAsync(QueryAccountingRequest entity)
+        public async Task<IEnumerable<Accounting>> GetByMemberIdAsync(Guid memberId)
         {
             string sql = @"SELECT [accountingId],a.[memberId],[typeId],[message],[money],[recordTime],[timestamp] 
                         FROM Accounting AS a
@@ -24,7 +24,7 @@ namespace Account_book.API.Repositories.Implements
 
             using (var conn = _connectionHelper.NkjMoneyConn())
             {
-                var data = await conn.QueryAsync<Accounting>(sql, entity);
+                var data = await conn.QueryAsync<Accounting>(sql, new { memberId = memberId });
                 return data;
             }
         }

@@ -17,9 +17,9 @@ namespace Account_book.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Accounting>> Get([FromQuery] QueryAccountingRequest entity)
+        public async Task<IEnumerable<Accounting>> Get([FromQuery] Guid memberId)
         {
-            var result = await _accountingService.GetAsync(entity);
+            var result = await _accountingService.GetByMemberIdAsync(memberId);
             return result;
         }
     }
