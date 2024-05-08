@@ -7,6 +7,7 @@ using AutoMapper;
 using System.Collections.Generic;
 using Account_book.API.Domain.Response;
 using static Dapper.SqlMapper;
+using Account_book.API.Domain.Request.Put;
 
 namespace Account_book.API.Services.Implements;
 
@@ -43,9 +44,10 @@ public class MemberService : IMemberService
         return ResponseExtension.Command.InsertSuccess();
     }
 
-    public async Task<ResultResponse> UpdateAsync(Member request)
+    public async Task<ResultResponse> UpdateAsync(PutMemberRequest request)
     {
-        var result = await _memberRepository.UpdateAsync(request);
+        var entity = _mapper.Map<Member>(request);
+        var result = await _memberRepository.UpdateAsync(entity);
         if (!result) { return ResponseExtension.Command.UpdateFail(); }
         return ResponseExtension.Command.UpdateSuccess();
     }

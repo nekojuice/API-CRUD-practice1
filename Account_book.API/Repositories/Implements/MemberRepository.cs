@@ -56,10 +56,10 @@ public class MemberRepository : IMemberRepository
                            ,[Email]
                            ,[Password])
                      VALUES
-                           (<MemberId, uniqueidentifier,>
-                           ,<Name, nvarchar(20),>
-                           ,<Email, nvarchar(100),>
-                           ,<Password, varchar(32),>)";
+                           (@MemberId
+                           ,@Name
+                           ,@Email
+                           ,@Password)";
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
             int count = await conn.ExecuteAsync(sql, entity);
@@ -71,10 +71,10 @@ public class MemberRepository : IMemberRepository
     {
         string sql = @"
                     UPDATE [NkjMoney].[dbo].[Member]
-                       SET [MemberId] = <MemberId, uniqueidentifier,>
-                          ,[Name] = <Name, nvarchar(20),>
-                          ,[Email] = <Email, nvarchar(100),>
-                          ,[Password] = <Password, varchar(32),>
+                       SET [MemberId] = @MemberId
+                          ,[Name] = @Name
+                          ,[Email] = @Email
+                          ,[Password] = @Password
                      WHERE [MemberId] = @MemberId";
         using (var conn = _connectionHelper.NkjMoneyConn())
         {
@@ -94,6 +94,4 @@ public class MemberRepository : IMemberRepository
             return (count == 1 ? true : false);
         }
     }
-
-
 }

@@ -6,12 +6,12 @@ using AutoMapper;
 
 namespace Account_book.API.Domain.AutoMapperProfile;
 
-public class MemberProfile : Profile
+public class AccountingProfile : Profile
 {
-    public MemberProfile() 
-    {
-        CreateMap<QueryMemberRequest, Member>();
-        CreateMap<InsertMemberRequest, Member>();
-        CreateMap<PutMemberRequest, Member>();
+    public AccountingProfile() {
+        CreateMap<QueryAccountingRequest, Accounting>();
+        CreateMap<InsertAccountingRequest, Accounting>();
+        CreateMap<PutAccountingRequest, Accounting>();
     }
+    
 }

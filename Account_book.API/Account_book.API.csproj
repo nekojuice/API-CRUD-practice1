@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Extensions\" />
-    <Folder Include="Domain\Request\Put\" />
     <Folder Include="Infrastructures\Cors\" />
     <Folder Include="Infrastructures\ExceptionHandler\" />
     <Folder Include="Infrastructures\HealthCheck\" />

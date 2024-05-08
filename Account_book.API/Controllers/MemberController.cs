@@ -5,6 +5,7 @@ using Account_book.API.Domain.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static Dapper.SqlMapper;
+using Account_book.API.Domain.Request.Put;
 
 namespace Account_book.API.Controllers;
 
@@ -19,37 +20,39 @@ public class MemberController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IResult> GetAsync([FromQuery] QueryMemberRequest? request)
+    public async Task<IResult> GetMemberAsync([FromQuery] QueryMemberRequest? request)
     {
         var result = await _memberService.GetAsync(request);
         return Results.Ok(result);
     }
 
     [HttpGet]
-    public async Task<IResult> GetByMemberIdAsync([FromQuery] Guid memberId)
+    [Route("{memberId}")]
+    public async Task<IResult> GetMemberByMemberIdAsync([FromRoute] Guid memberId)
     {
         var result = await _memberService.GetByMemberIdAsync(memberId);
         return Results.Ok(result);
     }
 
     [HttpPost]
-    public async Task<IResult> InsertAsync([FromBody] InsertMemberRequest request)
+    public async Task<IResult> InsertMemberAsync([FromBody] InsertMemberRequest request)
     {
         var result = await _memberService.InsertAsync(request);
         return Results.Ok(result);
     }
 
     [HttpPut]
-    public async Task<IResult> UpdateAsync([FromBody] Member request)
+    public async Task<IResult> UpdateMemberAsync([FromBody] PutMemberRequest request)
     {
         var result = await _memberService.UpdateAsync(request);
         return Results.Ok(result);
     }
 
     [HttpDelete]
-    public async Task<IResult> DeleteAsync([FromBody] Guid request)
+    [Route("{memberId}")]
+    public async Task<IResult> DeleteMemberAsync([FromRoute] Guid memberId)
     {
-        var result = await _memberService.DeleteAsync(request);
+        var result = await _memberService.DeleteAsync(memberId);
         return Results.Ok(result);
     }
 }
