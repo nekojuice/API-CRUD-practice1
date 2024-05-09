@@ -26,7 +26,7 @@ public class AccountingController : ControllerBase
     /// <param name="request">查詢條件</param>
     /// <returns>記帳記錄Accounting 陣列</returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse<QueryAccountingRequest>))]
     public async Task<IResult> GetAccountingAsync([FromQuery] QueryAccountingRequest? request)
     {
         var result = await _accountingService.GetAsync(request);
@@ -39,7 +39,7 @@ public class AccountingController : ControllerBase
     /// <param name="memberId">會員Id</param>
     /// <returns>記帳記錄Accounting 陣列</returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse<QueryAccountingRequest>))]
     [Route("{memberId}")]
     public async Task<IResult> GetAccountingByMemberIdAsync([FromRoute] Guid memberId)
     {

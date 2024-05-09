@@ -26,7 +26,7 @@ public class MemberController : ControllerBase
     /// <param name="request">可接受查詢的 會員Member 欄位</param>
     /// <returns>會員Member 陣列</returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse<Member>))]
     public async Task<IResult> GetMemberAsync([FromQuery] QueryMemberRequest? request)
     {
         var result = await _memberService.GetAsync(request);
@@ -39,7 +39,7 @@ public class MemberController : ControllerBase
     /// <param name="memberId">會員Id</param>
     /// <returns>會員Member 單筆</returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse<Member>))]
     [Route("{memberId}")]
     public async Task<IResult> GetMemberByMemberIdAsync([FromRoute] Guid memberId)
     {

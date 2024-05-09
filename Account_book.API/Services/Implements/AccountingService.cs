@@ -19,20 +19,20 @@ public class AccountingService : IAccountingService
         _mapper = mapper;
     }
 
-    public async Task<ResultResponse> GetAsync(QueryAccountingRequest? request)
+    public async Task<IResultResponse> GetAsync(QueryAccountingRequest? request)
     {
         var entity = _mapper.Map<Accounting>(request);
         var result = await _accountingRepository.GetAsync(entity);
         return ResponseExtension.Query.QuerySuccess(result);
     }
 
-    public async Task<ResultResponse> GetByMemberIdAsync(Guid memberId)
+    public async Task<IResultResponse> GetByMemberIdAsync(Guid memberId)
     {
         var result = await _accountingRepository.GetByMemberIdAsync(memberId);
         return ResponseExtension.Query.QuerySuccess(result);
     }
 
-    public async Task<ResultResponse> InsertAsync(InsertAccountingRequest request)
+    public async Task<IResultResponse> InsertAsync(InsertAccountingRequest request)
     {
         var entity = _mapper.Map<Accounting>(request);
         var result = await _accountingRepository.InsertAsync(entity);
@@ -40,7 +40,7 @@ public class AccountingService : IAccountingService
         return ResponseExtension.Command.InsertSuccess();
     }
 
-    public async Task<ResultResponse> UpdateAsync(PutAccountingRequest request)
+    public async Task<IResultResponse> UpdateAsync(PutAccountingRequest request)
     {
         var entity = _mapper.Map<Accounting>(request);
         var result = await _accountingRepository.UpdateAsync(entity);
@@ -48,7 +48,7 @@ public class AccountingService : IAccountingService
         return ResponseExtension.Command.UpdateSuccess();
     }
 
-    public async Task<ResultResponse> DeleteAsync(Guid accountingId)
+    public async Task<IResultResponse> DeleteAsync(Guid accountingId)
     {
         var result = await _accountingRepository.DeleteAsync(accountingId);
         if (!result) return ResponseExtension.Command.DeleteFail();

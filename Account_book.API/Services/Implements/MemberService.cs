@@ -22,21 +22,21 @@ public class MemberService : IMemberService
         _mapper = mapper;
     }
 
-    public async Task<ResultResponse> GetAsync(QueryMemberRequest? request)
+    public async Task<IResultResponse> GetAsync(QueryMemberRequest? request)
     {
         var entity = _mapper.Map<Member>(request);
         var result = await _memberRepository.GetAsync(entity);
         return ResponseExtension.Query.QuerySuccess(result);
     }
 
-    public async Task<ResultResponse> GetByMemberIdAsync(Guid memberId)
+    public async Task<IResultResponse> GetByMemberIdAsync(Guid memberId)
     {
         var result = await _memberRepository.GetByMemberIdAsync(memberId);
         if (!result.Any()) { return ResponseExtension.Command.QueryNotFound(memberId.ToString()); }
         return ResponseExtension.Query.QuerySuccess(result);
     }
 
-    public async Task<ResultResponse> InsertAsync(InsertMemberRequest request)
+    public async Task<IResultResponse> InsertAsync(InsertMemberRequest request)
     {
         var entity = _mapper.Map<Member>(request);
         var result = await _memberRepository.InsertAsync(entity);
@@ -44,7 +44,7 @@ public class MemberService : IMemberService
         return ResponseExtension.Command.InsertSuccess();
     }
 
-    public async Task<ResultResponse> UpdateAsync(PutMemberRequest request)
+    public async Task<IResultResponse> UpdateAsync(PutMemberRequest request)
     {
         var entity = _mapper.Map<Member>(request);
         var result = await _memberRepository.UpdateAsync(entity);
@@ -52,7 +52,7 @@ public class MemberService : IMemberService
         return ResponseExtension.Command.UpdateSuccess();
     }
 
-    public async Task<ResultResponse> DeleteAsync(Guid request)
+    public async Task<IResultResponse> DeleteAsync(Guid request)
     {
         var result = await _memberRepository.DeleteAsync(request);
         if (!result) { return ResponseExtension.Command.DeleteFail(); }
