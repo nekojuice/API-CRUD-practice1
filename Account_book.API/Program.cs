@@ -1,6 +1,9 @@
 using Account_book.API.Infrastructures.DependencyInjection;
+using Account_book.API.Infrastructures.NSwag;
 
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
+var env = builder.Environment;
 
 // Add services to the container.
 
@@ -9,7 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ¦Û­qDI
+// NSwag
+builder.Services.NSwagConfigSetting(env);
+
+// ¦Û­q DI
 builder.Services.CustomDIConfigurator();
 // AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -19,7 +25,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    //app.UseSwagger();
+    app.UseOpenApi();
     app.UseSwaggerUI();
 }
 
