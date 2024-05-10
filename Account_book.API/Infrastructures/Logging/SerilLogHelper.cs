@@ -28,6 +28,9 @@ public static class SerilLogHelper
              .CreateLogger();
     }
 
+    // 參考來源
+    // https://stackoverflow.com/questions/60076922/serilog-logging-web-api-methods-adding-context-properties-inside-middleware
+
     public static string RequestPayload = "";
 
     public static async void EnrichFromRequest(IDiagnosticContext diagnosticContext, HttpContext httpContext)
