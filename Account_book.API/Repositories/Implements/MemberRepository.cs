@@ -51,13 +51,11 @@ public class MemberRepository : IMemberRepository
     {
         string sql = @"
                      INSERT INTO [NkjMoney].[dbo].[Member]
-                           ([MemberId]
-                           ,[Name]
+                           ([Name]
                            ,[Email]
                            ,[Password])
                      VALUES
-                           (@MemberId
-                           ,@Name
+                           (@Name
                            ,@Email
                            ,@Password)";
         using (var conn = _connectionHelper.NkjMoneyConn())
