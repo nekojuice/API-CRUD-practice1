@@ -1,6 +1,6 @@
 ﻿using Account_book.API.Domain.Entity;
 
-namespace Account_book.API.Domain.Response
+namespace Account_book.API.Domain.Response.Get
 {
     public class GetAccountingResponse
     {

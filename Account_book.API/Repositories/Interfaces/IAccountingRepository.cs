@@ -1,6 +1,6 @@
 ﻿using Account_book.API.Domain.Request.Get;
 using Account_book.API.Domain.Entity;
-using Account_book.API.Domain.Response;
+using Account_book.API.Domain.Response.Get;
 
 namespace Account_book.API.Repositories.Interfaces;
 
