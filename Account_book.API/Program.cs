@@ -1,3 +1,4 @@
+using Account_book.API.Infrastructures.Cors;
 using Account_book.API.Infrastructures.DependencyInjection;
 using Account_book.API.Infrastructures.Logging;
 using Account_book.API.Infrastructures.NSwag;
@@ -22,7 +23,8 @@ builder.Services.CustomDIConfigurator();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // SerilLog 
 builder.Services.AddSerilog();
-
+// Cors
+builder.Services.CorsSetting(env);
 
 var app = builder.Build();
 
@@ -37,6 +39,8 @@ if (app.Environment.IsDevelopment())
 // https://stackoverflow.com/questions/60076922/serilog-logging-web-api-methods-adding-context-properties-inside-middleware
 app.UseMiddleware<RequestResponseLoggingMiddleware>();
 app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = SerilLogHelper.EnrichFromRequest);
+// Cors
+app.UseCors("_Account_book_html");
 
 
 app.UseHttpsRedirection();

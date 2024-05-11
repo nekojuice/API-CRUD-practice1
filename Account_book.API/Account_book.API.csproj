@@ -33,7 +33,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Extensions\" />
-    <Folder Include="Infrastructures\Cors\" />
     <Folder Include="Infrastructures\ExceptionHandler\" />
     <Folder Include="Infrastructures\HealthCheck\" />
     <Folder Include="Infrastructures\JWTToken\" />
