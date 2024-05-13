@@ -17,18 +17,18 @@ public static class Cors
                 {
                     if (env.IsDevelopment() || env.IsEnvironment("Testing"))
                     {
-                        //builder.WithOrigins(
-                        //    "http://localhost:5500",
-                        //    "https://localhost:5500",
-                        //    "http://127.0.0.1:5500")
-                        //        .AllowAnyHeader()
-                        //        .AllowAnyMethod()
-                        //        .AllowCredentials();
-
-                        builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                        builder.WithOrigins(
+                            "http://localhost:5500",
+                            "https://localhost:5500",
+                            "http://127.0.0.1:5500")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod()
                                 .AllowCredentials();
+
+                        //builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                        //        .AllowAnyHeader()
+                        //        .AllowAnyMethod()
+                        //        .AllowCredentials();
                     }
                 });
         });
