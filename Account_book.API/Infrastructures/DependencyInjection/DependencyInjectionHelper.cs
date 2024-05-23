@@ -17,8 +17,10 @@ public static class DependencyInjectionHelper
         //Service
         services.AddScoped<IAccountingService, AccountingService>();
         services.AddScoped<IMemberService, MemberService>();
+        services.AddScoped<ILoginService, LoginService>();
         //Repository
         services.AddScoped<IAccountingRepository, AccountingRepository>();
         services.AddScoped<IMemberRepository, MemberRepository>();
+        services.AddScoped<ILoginRepository, LoginRepository>();
     }
 }

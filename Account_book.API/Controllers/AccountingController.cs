@@ -7,9 +7,11 @@ using Account_book.API.Domain.Request.Post;
 using Account_book.API.Services.Implements;
 using Account_book.API.Domain.Request.Put;
 using Account_book.API.Domain.Response;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Account_book.API.Controllers;
 
+[Authorize]
 [Route("api/[controller]/[action]")]
 [ApiController]
 public class AccountingController : ControllerBase
