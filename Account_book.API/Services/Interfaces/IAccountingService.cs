@@ -10,7 +10,7 @@ public interface IAccountingService
 {
     public Task<IResultResponse> GetAsync(QueryAccountingRequest? request, Guid memberId);
     public Task<IResultResponse> GetByMemberIdAsync(Guid memberId);
-    public Task<IResultResponse> InsertAsync(InsertAccountingRequest request);
+    public Task<IResultResponse> InsertAsync(InsertAccountingRequest request, Guid memberId);
     public Task<IResultResponse> UpdateAsync(PutAccountingRequest request);
     public Task<IResultResponse> DeleteAsync(Guid accountingId);
 }

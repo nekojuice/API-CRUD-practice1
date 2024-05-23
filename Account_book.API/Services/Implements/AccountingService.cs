@@ -33,7 +33,7 @@ public class AccountingService : IAccountingService
         return ResponseExtension.Query.QuerySuccess(result);
     }
 
-    public async Task<IResultResponse> InsertAsync(InsertAccountingRequest request)
+    public async Task<IResultResponse> InsertAsync(InsertAccountingRequest request, Guid memberId)
     {
         var entity = _mapper.Map<Accounting>(request);
         var result = await _accountingRepository.InsertAsync(entity);

@@ -5,12 +5,6 @@ namespace Account_book.API.Domain.Request.Post;
 public class InsertAccountingRequest
 {
     /// <summary>
-    /// FK 會員ID
-    /// </summary>
-    [Display(Name = "會員ID")]
-    [Required(ErrorMessage = "{0} 為必填")]
-    public Guid MemberId { get; set; }
-    /// <summary>
     /// FK 類別標籤ID
     /// </summary>
     [Display(Name = "類別標籤ID")]

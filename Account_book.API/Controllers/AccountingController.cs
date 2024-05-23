@@ -59,7 +59,8 @@ public class AccountingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
     public async Task<IResult> InsertAccountingByMemberIdAsync([FromBody] InsertAccountingRequest request)
     {
-        var result = await _accountingService.InsertAsync(request);
+        var memberId = User.Identity.Name;
+        var result = await _accountingService.InsertAsync(request, new Guid(memberId));
         return Results.Ok(result);
     }
 
