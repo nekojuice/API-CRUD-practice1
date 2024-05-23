@@ -23,10 +23,10 @@ public class LoginService : ILoginService
     public async Task<IResultResponse> ValidateUser(PostLoginRequest request)
     {
         var entity = _mapper.Map<Member>(request);
-        var memberId = await _loginRepository.ValidateUser(entity);
-        if (memberId !=  Guid.Empty)
+        var member = await _loginRepository.ValidateUser(entity);
+        if (member.MemberId !=  Guid.Empty)
         {
-            var token = _jwtHelpers.GenerateToken(memberId.ToString());
+            var token = _jwtHelpers.GenerateToken(member.MemberId.ToString());
             return ResponseExtension.Command.SiginSuccess(token);
         }
         return ResponseExtension.Verify.LoginVerificationError();

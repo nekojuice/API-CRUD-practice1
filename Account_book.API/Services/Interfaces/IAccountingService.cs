@@ -8,7 +8,7 @@ namespace Account_book.API.Services.Interfaces;
 
 public interface IAccountingService
 {
-    public Task<IResultResponse> GetAsync(QueryAccountingRequest? request);
+    public Task<IResultResponse> GetAsync(QueryAccountingRequest? request, Guid memberId);
     public Task<IResultResponse> GetByMemberIdAsync(Guid memberId);
     public Task<IResultResponse> InsertAsync(InsertAccountingRequest request);
     public Task<IResultResponse> UpdateAsync(PutAccountingRequest request);

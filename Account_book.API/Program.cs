@@ -49,6 +49,7 @@ app.UseCors("_Account_book_html");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

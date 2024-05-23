@@ -9,16 +9,16 @@ public class LoginRepository : ILoginRepository
 {
     private readonly DatabaseConnectionHelper _connectionHelper;
     public LoginRepository(DatabaseConnectionHelper databaseConnectionHelper) => _connectionHelper = databaseConnectionHelper;
-    public async Task<Guid> ValidateUser(Member entity)
+    public async Task<Member> ValidateUser(Member entity)
     {
         string sql = @"
-                    SELECT [MemberId]
+                    SELECT *
                       FROM [NkjMoney].[dbo].[Member]
                      WHERE [Email]  = @Email
                        AND [Password] = @Password
         ";
         using var conn = _connectionHelper.NkjMoneyConn();
-        var reslut = await conn.QueryAsync<Guid>(sql, entity);
+        var reslut = await conn.QueryAsync<Member>(sql, entity);
         return reslut.FirstOrDefault();
     }
 }

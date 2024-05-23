@@ -14,7 +14,7 @@ namespace Account_book.API.Infrastructures.JWTToken
             this.Configuration = configuration;
         }
 
-        public string GenerateToken(string userName, int expireMinutes = 30)
+        public string GenerateToken(string memberId, int expireMinutes = 30)
         {
             var issuer = Configuration.GetValue<string>("JwtSettings:Issuer");
             var signKey = Configuration.GetValue<string>("JwtSettings:SignKey");
@@ -24,7 +24,7 @@ namespace Account_book.API.Infrastructures.JWTToken
 
             // In RFC 7519 (Section#4), there are defined 7 built-in Claims, but we mostly use 2 of them.
             //claims.Add(new Claim(JwtRegisteredClaimNames.Iss, issuer));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, userName)); // User.Identity.Name
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, memberId)); // User.Identity.Name
                                                                           //claims.Add(new Claim(JwtRegisteredClaimNames.Aud, "The Audience"));
                                                                           //claims.Add(new Claim(JwtRegisteredClaimNames.Exp, DateTimeOffset.UtcNow.AddMinutes(30).ToUnixTimeSeconds().ToString()));
                                                                           //claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString())); // 必須為數字
@@ -38,9 +38,8 @@ namespace Account_book.API.Infrastructures.JWTToken
             //claims.Add(new Claim(ClaimTypes.Name, userName));
 
             // TODO: You can define your "roles" to your Claims.
-            claims.Add(new Claim(ClaimTypes.Role, "Admin"));
             claims.Add(new Claim(ClaimTypes.Role, "Users"));
-            claims.Add(new Claim(ClaimTypes.Role, "Cat"));
+            //claims.Add(new Claim("memberName", memberName));
 
             var userClaimsIdentity = new ClaimsIdentity(claims);
 

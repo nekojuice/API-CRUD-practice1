@@ -19,9 +19,10 @@ public class AccountingService : IAccountingService
         _mapper = mapper;
     }
 
-    public async Task<IResultResponse> GetAsync(QueryAccountingRequest? request)
+    public async Task<IResultResponse> GetAsync(QueryAccountingRequest? request, Guid memberId)
     {
         var entity = _mapper.Map<Accounting>(request);
+        entity.MemberId = memberId;
         var result = await _accountingRepository.GetAsync(entity);
         return ResponseExtension.Query.QuerySuccess(result);
     }

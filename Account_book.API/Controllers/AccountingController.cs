@@ -31,7 +31,8 @@ public class AccountingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse<QueryAccountingRequest>))]
     public async Task<IResult> GetAccountingAsync([FromQuery] QueryAccountingRequest? request)
     {
-        var result = await _accountingService.GetAsync(request);
+        var memberId = User.Identity.Name;
+        var result = await _accountingService.GetAsync(request, new Guid(memberId));
         return Results.Ok(result);
     }
 
