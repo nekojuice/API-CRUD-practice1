@@ -5,5 +5,5 @@ namespace Account_book.API.Repositories.Interfaces;
 
 public interface ILoginRepository
 {
-    public Task<bool> ValidateUser(Member entity);
+    public Task<Guid> ValidateUser(Member entity);
 }
