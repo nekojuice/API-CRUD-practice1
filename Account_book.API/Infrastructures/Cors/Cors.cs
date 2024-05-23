@@ -20,7 +20,9 @@ public static class Cors
                         builder.WithOrigins(
                             "http://localhost:5500",
                             "https://localhost:5500",
-                            "http://127.0.0.1:5500")
+                            "http://127.0.0.1:5500",
+                            "https://127.0.0.1:5500",
+                            "http://localhost:5173/") // 5173 port: Vue client dev
                                 .AllowAnyHeader()
                                 .AllowAnyMethod()
                                 .AllowCredentials();
