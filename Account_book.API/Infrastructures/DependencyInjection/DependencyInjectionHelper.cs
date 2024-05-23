@@ -18,9 +18,11 @@ public static class DependencyInjectionHelper
         services.AddScoped<IAccountingService, AccountingService>();
         services.AddScoped<IMemberService, MemberService>();
         services.AddScoped<ILoginService, LoginService>();
+        services.AddScoped<ILabelTypeService, LabelTypeService>();
         //Repository
         services.AddScoped<IAccountingRepository, AccountingRepository>();
         services.AddScoped<IMemberRepository, MemberRepository>();
         services.AddScoped<ILoginRepository, LoginRepository>();
+        services.AddScoped<ILabelTypeRepository, LabelTypeRepository>();
     }
 }

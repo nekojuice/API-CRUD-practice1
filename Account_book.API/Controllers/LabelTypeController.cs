@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Account_book.API.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Account_book.API.Controllers
@@ -7,7 +8,14 @@ namespace Account_book.API.Controllers
     [ApiController]
     public class LabelTypeController : ControllerBase
     {
-        //先放著，練習時非必要功能表
-        //有需要再寫
+        private readonly ILabelTypeService _labelTypeService;
+        public LabelTypeController(ILabelTypeService labelTypeService) { _labelTypeService = labelTypeService; }
+
+        [HttpGet]
+        public async Task<IResult> GetAsync()
+        {
+            var result = await _labelTypeService.GetAll();
+            return Results.Ok(result);
+        }
     }
 }
