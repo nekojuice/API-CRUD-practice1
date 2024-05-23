@@ -1,5 +1,6 @@
 using Account_book.API.Infrastructures.Cors;
 using Account_book.API.Infrastructures.DependencyInjection;
+using Account_book.API.Infrastructures.JWTToken;
 using Account_book.API.Infrastructures.Logging;
 using Account_book.API.Infrastructures.NSwag;
 using Serilog;
@@ -25,6 +26,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSerilog();
 // Cors
 builder.Services.CorsSetting(env);
+// Auth & JWT
+builder.Services.AddSingleton<JwtHelpers>();
+builder.Services.JwtConfig(config);
 
 var app = builder.Build();
 

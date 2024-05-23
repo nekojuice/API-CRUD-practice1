@@ -35,7 +35,6 @@
     <Folder Include="Common\Extensions\" />
     <Folder Include="Infrastructures\ExceptionHandler\" />
     <Folder Include="Infrastructures\HealthCheck\" />
-    <Folder Include="Infrastructures\JWTToken\" />
   </ItemGroup>
 
 </Project>
