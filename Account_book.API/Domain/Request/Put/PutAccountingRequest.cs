@@ -8,11 +8,6 @@ public class PutAccountingRequest
     public Guid AccountingId { get; set; }
 
     /// <summary>
-    /// FK 會員ID
-    /// </summary>
-    public Guid MemberId { get; set; }
-
-    /// <summary>
     /// FK 類別標籤ID
     /// </summary>
     public Guid TypeId { get; set; }
@@ -31,9 +26,4 @@ public class PutAccountingRequest
     /// 該筆記帳的消費時間
     /// </summary>
     public DateTime RecordTime { get; set; }
-
-    /// <summary>
-    /// 資料生成時的時間戳記
-    /// </summary>
-    public DateTime? Timestamp { get; set; }
 }

@@ -36,6 +36,7 @@ public class AccountingService : IAccountingService
     public async Task<IResultResponse> InsertAsync(InsertAccountingRequest request, Guid memberId)
     {
         var entity = _mapper.Map<Accounting>(request);
+        entity.MemberId = memberId;
         var result = await _accountingRepository.InsertAsync(entity);
         if (!result) return ResponseExtension.Command.InsertFail();
         return ResponseExtension.Command.InsertSuccess();
