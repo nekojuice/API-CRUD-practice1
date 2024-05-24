@@ -8,6 +8,7 @@ using Account_book.API.Services.Implements;
 using Account_book.API.Domain.Request.Put;
 using Account_book.API.Domain.Response;
 using Microsoft.AspNetCore.Authorization;
+using Account_book.API.Domain.Request.Delete;
 
 namespace Account_book.API.Controllers;
 
@@ -73,7 +74,8 @@ public class AccountingController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
     public async Task<IResult> UpdateAccountingAsync([FromBody] PutAccountingRequest request)
     {
-        var result = await _accountingService.UpdateAsync(request); 
+        var memberId = User.Identity.Name;
+        var result = await _accountingService.UpdateAsync(request, new Guid(memberId)); 
         return Results.Ok(result);
     }
 
@@ -84,8 +86,7 @@ public class AccountingController : ControllerBase
     /// <returns>是否成功</returns>
     [HttpDelete]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ResultResponse))]
-    [Route("{accountingId}")]
-    public async Task<IResult> DeleteAccountingAsync([FromRoute] Guid accountingId)
+    public async Task<IResult> DeleteAccountingAsync([FromBody] DeleteAccountingRequest accountingId)
     {
         var result = await _accountingService.DeleteAsync(accountingId);
         return Results.Ok(result);
