@@ -17,6 +17,7 @@ public static class SerilLogHelper
             .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning) // 設定 Microsoft.AspNetCore 訊息為 Warning 為最小輸出
             .Enrich.FromLogContext()  // 可以增加Log輸出欄位 https://www.cnblogs.com/wd4j/p/15043489.html
             .WriteTo.Console(new CompactJsonFormatter()) // 寫入Console
+            .WriteTo.Seq("http://localhost:5341")
             .WriteTo.Map(   // 寫入txt => 按照 level
             evt => evt.Level,
             (level, wt) => wt.File(

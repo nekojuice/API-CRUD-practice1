@@ -7,6 +7,7 @@
     <RootNamespace>Account_book.API</RootNamespace>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	<NoWarn>$(NoWarn);1591</NoWarn>
+	<Configurations>Debug;Release;Testing</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,12 +30,28 @@
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="Serilog.Formatting.Compact" Version="2.0.0" />
     <PackageReference Include="Serilog.Sinks.Map" Version="1.0.2" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="7.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Common\Extensions\" />
     <Folder Include="Infrastructures\ExceptionHandler\" />
     <Folder Include="Infrastructures\HealthCheck\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

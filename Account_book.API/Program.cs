@@ -33,19 +33,19 @@ builder.Services.JwtConfig(config);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseOpenApi();
     app.UseSwaggerUi();
-}
+//}
 
 // Logging
 // https://stackoverflow.com/questions/60076922/serilog-logging-web-api-methods-adding-context-properties-inside-middleware
 app.UseMiddleware<RequestResponseLoggingMiddleware>();
 app.UseSerilogRequestLogging(opts => opts.EnrichDiagnosticContext = SerilLogHelper.EnrichFromRequest);
 // Cors
-app.UseCors("_Account_book_html");
-
+app.UseCors();
+//app.UseCors("_Account_book_html");
 
 app.UseHttpsRedirection();
 
